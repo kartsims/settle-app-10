@@ -5,7 +5,7 @@
 
     <div class="menu">
 
-      <h1 @click="$router.push('/about')">ERC20 Whale Watcher</h1>
+      <h1 @click="$router.push('/about')">ERC20 Watcher</h1>
 
       <div class="tabs">
 
