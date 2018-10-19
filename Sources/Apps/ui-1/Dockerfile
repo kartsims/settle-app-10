@@ -2,4 +2,4 @@ FROM node:10.5.0
 COPY . /app
 WORKDIR /app
 EXPOSE 22 80 443 3000 7000 8000 9000
-ENTRYPOINT ["npm", "run", "prod"]
+ENTRYPOINT ["npm", "run", "serve"]
