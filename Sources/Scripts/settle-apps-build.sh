@@ -15,3 +15,12 @@ echo "Script Directory: $script_directory"
 source "$PWD/scripts/modules/args-parser.sh"
 
 echo "ONE TIME EXECUTED BUILD SCRIPT"
+
+cd "$PWD/Sources/Apps/ui-1"
+yarn config set unsafe-perm true
+
+echo "Installing Node dependencies..."
+yarn
+
+echo "Building front-end static assets"
+yarn build
