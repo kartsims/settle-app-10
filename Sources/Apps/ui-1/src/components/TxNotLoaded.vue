@@ -70,5 +70,9 @@ export default {
   i.icon-warning {
     color: #f6a622;
   }
+  .mode-helper & {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
 }
 </style>

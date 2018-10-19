@@ -3,7 +3,12 @@
     <div class="empty" v-if="items.length === 0">
       No transactions available
     </div>
-    <table class="txs" v-else>
+    <table
+      v-else
+      class="txs"
+      cellspacing="0" 
+      cellpadding="0"
+    >
       <tr
         v-for="(tx, index) in items" 
         :key="tx.hash"
@@ -18,7 +23,9 @@
           <span class="in" v-else>IN</span>
         </td>
         <td class="value">
-          {{ tx.valueRound }}<span class="decimal">{{ tx.valueDecimal }}</span>
+          <span class="sign">{{ tx.out ? '-' : '+' }}</span>
+          <span>{{ tx.valueRound }}</span>
+          <span class="decimal">{{ tx.valueDecimal }}</span>
           <span class="ticker">
             {{ tx.token.ticker }}
           </span>
@@ -55,7 +62,7 @@ export default {
         }
         return {
           date: moment.unix(tx.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-          address: tx.address,
+          address: this.shortAddress(tx.address),
           hash: tx.hash,
           value,
           valueRound: Math.floor(value),
@@ -71,6 +78,12 @@ export default {
     seeTx (tx) {
       window.open('https://etherscan.io/tx/' + tx.hash)
     },
+    shortAddress (address) {
+      if (this.$root.mode === 'work') {
+        return address
+      }
+      return address.substr(0, 7) + '…'
+    }
   },
 }
 </script>
@@ -97,16 +110,21 @@ table {
   td.value {
     font-family: 'Courier New', Courier, monospace;
     text-align: right;
-    .decimal {
+    span {
       display: inline-block;
+    }
+    .sign {
+      display: none;
+    }
+    .decimal {
       width: 36px;
       opacity: .5;
       text-align: left;
     }
     .ticker {
-      display: inline-block;
       width: 30px;
       text-align: left;
+      padding-left: 3px;
     }
   }
   td.out {
@@ -126,6 +144,33 @@ table {
   td.address {
     font-family: 'Courier New', Courier, monospace;
     font-size: .8em;
+  }
+
+  .mode-alerts &,
+  .mode-helper & {
+    width: 100%;
+    td.out {
+      display: none;
+    }
+    td.value {
+      white-space: nowrap;
+      .sign {
+        display: inline-block;
+      }
+    }
+  }
+
+  .mode-helper & {
+    td.date {
+      width: 64px;
+      font-size: 9px;
+    }
+    td.value {
+      font-size: 10px;
+      .decimal {
+        display: none;
+      }
+    }
   }
 }
 .empty {

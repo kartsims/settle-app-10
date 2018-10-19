@@ -1,11 +1,11 @@
 <template>
-  <div class="tx-updater">
+  <div class="tx-updater" :class="{loading}">
     <span class="info" v-if="secondsBeforeNext">
       Next update in {{ formatDuration(secondsBeforeNext) }}
       <a href="#" @click.prevent="secondsBeforeNext = 0">refresh now</a>
     </span>
     <span class="info" v-else-if="loading">
-      Updating transactions history
+      Updating accounts...
       <span v-if="watchList.length">
         ({{ nbDone.toString() }}/{{ watchList.length }})
       </span>
@@ -22,6 +22,7 @@
       <span 
         v-else-if="watchListTxNotLoaded.length === 0"
         class="ok"
+        v-tooltip.top-center="'All accounts\' transaction history has been updated.'"
       />
       <TxNotLoaded 
         v-else 
@@ -103,7 +104,7 @@ export default {
 
 <style lang="scss" scoped>
 .tx-updater {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 10px;
   background: #2c3e50;
   font-size: 12px;
@@ -118,6 +119,36 @@ export default {
       height: 16px;
       border-radius: 20px;
       background: rgb(23, 94, 23);
+    }
+  }
+
+  .mode-helper & {
+    position: relative;
+    span.info {
+      display: block;
+      margin: 0;
+      text-align: center;
+      a {
+        display: block;
+        margin: 10px 0 0;
+      }
+    }
+    &.loading {
+      .status {
+        bottom: 10px;
+      }
+    }
+    .status {
+      position: absolute;
+      bottom: 6px;
+      right: 10px;
+      i {
+        font-size: 24px;
+      }
+      .ok {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

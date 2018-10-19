@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="'mode-' + $root.mode">
 
     <TxUpdater/>
 
@@ -99,7 +99,7 @@ h1 {
   }
 }
 .content {
-  padding: 0 10px 20px;
+  padding: 0 10px 30px;
 }
 
 @media (max-width: 640px) {

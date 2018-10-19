@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="filters">
+    <div v-if="$root.mode === 'work'" class="filters">
 
       <select v-model="filterByAccount">
         <option :value="null">All accounts</option>
@@ -99,8 +99,8 @@ export default {
 
 <style lang="scss" scoped>
 div.count {
-  font-size: 12px;
-  padding: 10px 0;
+  font-size: 10px;
+  padding: 20px 0 0;
   opacity: .5;
 }
 .filters {
