@@ -1,10 +1,6 @@
 <template>
   <div>
 
-    <TxLoading :items="watchListTxLoading"/>
-
-    <TxNotLoaded :items="watchListTxNotLoaded"/>
-    
     <div class="filters">
 
       <select v-model="filterByAccount">
@@ -51,14 +47,10 @@ import { mapGetters, mapState } from 'vuex'
 import config from '../../config.json'
 
 import TxList from '@/components/TxList.vue'
-import TxLoading from '@/components/TxLoading.vue'
-import TxNotLoaded from '@/components/TxNotLoaded.vue'
 
 export default {
   components: {
     TxList,
-    TxLoading,
-    TxNotLoaded,
   },
   data () {
     return {
@@ -70,15 +62,6 @@ export default {
   computed: {
     ...mapGetters(['getToken']),
     ...mapState(['watchList', 'txs']),
-    watchListTxLoading () {
-      return this.watchList.filter(i => i.txLoaded === null)
-    },
-    watchListTxNotLoaded () {
-      return this.watchList.filter(i => i.txLoaded === false)
-    },
-    watchListTxLoaded () {
-      return this.watchList.filter(i => i.txLoaded === true)
-    },
     filteredTxs () {
       if (this.filterByAccount) {
         return this.txs.filter(tx => tx.address === this.filterByAccount)

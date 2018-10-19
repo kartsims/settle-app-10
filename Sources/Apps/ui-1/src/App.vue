@@ -3,7 +3,7 @@
 
     <TxUpdater/>
 
-    <div class="menu">
+    <div v-if="$root.mode === 'work'" class="menu">
 
       <h1 @click="$router.push('/about')">ERC20 Watcher</h1>
 
@@ -108,11 +108,9 @@ h1 {
   }
   h1 {
     font-size: 16px;
-    text-align: center;
     margin-bottom: 10px;
   }
   .tabs {
-    display: none;
     .tab {
       height: 24px;
       line-height: 24px;

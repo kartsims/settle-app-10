@@ -18,11 +18,22 @@
       {{ token.name }} ({{ token.ticker }})
     </h3>
 
-    <template v-if="!noValues">
+    <template v-show="!noValues">
 
       <div class="total">
         Total over the last {{ configTxHistoryDays }} days :
-        {{ totalIn }} / {{ totalOut }}
+        <template v-if="totalIn !== '-' && totalOut !== '-'">
+          {{ totalIn }} / {{ totalOut }}
+        </template>
+        <template v-else-if="totalIn !== '-'">
+          {{ totalIn }}
+        </template>
+        <template v-else-if="totalOut !== '-'">
+          {{ totalOut }}
+        </template>
+        <template v-else>
+          -
+        </template>
       </div>
 
       <Chart
@@ -34,7 +45,7 @@
 
     </template>
     
-    <div v-else class="empty">
+    <div v-show="noValues" class="empty">
       No data available
     </div>
 

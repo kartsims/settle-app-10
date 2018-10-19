@@ -3,23 +3,33 @@
 
     <div class="header">
 
-      <span v-if="watchList.length > 1" class="count">
-        Group by 
-        <label>
-          <input type="radio" v-model="groupBy" value="token"/>
-          Token
-        </label>
-        <label>
-          <input type="radio" v-model="groupBy" value="address"/>
-          Account
-        </label>
-      </span>
+      <div v-if="watchList.length > 1">
+
+        <router-link to="/add" class="add" style="float: right">
+          Add an account
+        </router-link>
+
+        <span class="count">
+          Group by 
+          <label>
+            <input type="radio" v-model="groupBy" value="token"/>
+            Token
+          </label>
+          <label>
+            <input type="radio" v-model="groupBy" value="address"/>
+            Account
+          </label>
+        </span>
+
+      </div>
       
       <span v-else-if="watchList.length === 0" class="count empty">
         No account watched yet
         <br/>
         <br/>
-        <router-link to="/add" class="add">Add an account</router-link>
+        <router-link to="/add" class="add">
+          Add an account
+        </router-link>
       </span>
 
     </div>

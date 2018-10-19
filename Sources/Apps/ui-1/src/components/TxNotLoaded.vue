@@ -3,15 +3,15 @@
     class="inner" 
     v-if="items.length > 0"
     v-tooltip.top-center="helpMessage"
+    @click.prevent="retry"
   >
-    <i class="icon-warning"/>
-    {{ items.length }} account<span v-text="items.length > 1 ? 's\'' : '\'s'"/> transactions could not be loaded
-    <a v-if="!locktimeLeft" href="#" @click.prevent="retry">retry</a>
-    <a v-else class="locked" href="#">wait {{ locktimeLeft }} seconds before trying again...</a>
+    <i v-if="locktimeLeft === 0" class="icon-warning"/>
+    <i v-else class="icon-spinner animate-spin"/>
   </div>
 </template>
 
 <script>
+const LOCKTIME = 30
 export default {
   props: ['items'],
   data () {
@@ -41,7 +41,7 @@ export default {
           countdown()
         }, 1000)
       }
-      this.locktimeLeft = 30
+      this.locktimeLeft = LOCKTIME
       countdown()
     }
   },
@@ -55,7 +55,7 @@ export default {
           accountsList += ` (${token.ticker})`
         }
       })
-      return 'The following accounts have had too many transactions recently and their history can\'t be displayed :<br/>' + accountsList
+      return 'The following accounts have had too many transactions recently and their history can\'t be displayed :<br/>' + accountsList + '<br/><br/>Click to retry (max once per ' + LOCKTIME + ' seconds)'
     },
   },
 }
@@ -66,18 +66,9 @@ export default {
   font-size: 12px;
   display: inline-block;
   margin-bottom: 10px;
-  a {
-    display: inline-block;
-    border: 1px solid #ffffffc2;
-    color: #ffffffc2;
-    padding: .1em .5em;
-    border-radius: .2em;
-    text-decoration: none;
-    margin-left: 1em;
-    font-size: .8em;
-    &.locked {
-      opacity: .5;
-    }
+  cursor: pointer;
+  i.icon-warning {
+    color: #f6a622;
   }
 }
 </style>

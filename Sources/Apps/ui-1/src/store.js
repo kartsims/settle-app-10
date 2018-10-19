@@ -65,7 +65,6 @@ export default new Vuex.Store({
   actions: {
     async getTxs({ commit }, payload) {
       commit('TX_ACCOUNT_REMOVE', payload)
-      console.log('getTxs', JSON.stringify(payload, null, 2))
       let txs = []
       let timestamp = +moment().format('X')
       const minTimestamp = +moment().subtract(config.txHistoryDays, 'days').format('X')
@@ -113,7 +112,6 @@ export default new Vuex.Store({
           ...payload,
           value: txLoaded,
         })
-        console.log('%d txs found', txs.length)
       } catch(e) {
         console.log('Tx retrieval failed')
         console.log(e)

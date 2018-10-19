@@ -16,5 +16,14 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  data () {
+    const matches = window.location.search.match(/mode=([^\&]+)/)
+    return {
+      mode: matches ? matches[1] : 'work',
+    }
+  },
+  created () {
+
+  },
 }).$mount('#app')
