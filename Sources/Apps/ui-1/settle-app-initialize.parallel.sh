@@ -15,6 +15,3 @@ echo "Script Directory: $script_directory"
 source "$PWD/scripts/modules/args-parser.sh"
 
 echo "EXAMPLE TEMPLATE OF PRE-BUILD SCRIPT, CAN BE USED TO INSTAL NOT AVAILABLE DEPENDENCIES, UPGRADE CURRENT ONES etc."
-
-
-CDHelper aes decrypt --key=$example_secret_path --path=$script_directory/example-secret-ui-1.json.aes
