@@ -40,6 +40,8 @@ import * as async from '@/utils/async'
 
 import TxNotLoaded from '@/components/TxNotLoaded.vue'
 
+const UPDATE_FREQUENCY=900
+
 export default {
   components: {
     TxNotLoaded,
@@ -68,7 +70,7 @@ export default {
       const tickTock = async () => {
         if (this.secondsBeforeNext <= 0) {
           await this.updateTxs()
-          this.secondsBeforeNext = 500
+          this.secondsBeforeNext = UPDATE_FREQUENCY
         } else {
           this.secondsBeforeNext--
         }
