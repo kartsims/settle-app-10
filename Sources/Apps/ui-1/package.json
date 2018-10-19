@@ -1,21 +1,56 @@
 {
-  "name": "demo-ui-js-server",
-  "version": "1.0.0",
+  "name": "settle-hackathon",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "run-local-client": "cd client && npm local",
-    "run-local-server": "nodemon server.js",
-    "run-prod-client": "cd client && npm start",
-    "run-prod-server": "nodemon server.js",
-    "local": "concurrently --kill-others-on-fail \"npm:run-local*\"",
-    "prod": "concurrently --kill-others-on-fail \"npm:run-prod*\""
+    "tokens": "node scripts/tokens.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "concurrently": "^3.5.0",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "node-fetch": "^2.1.2",
-    "nodemon": "^1.18.3",
-    "querystring": "^0.2.0"
-  }
+    "chart.js": "^2.7.2",
+    "cheerio": "^1.0.0-rc.2",
+    "node-sass": "^4.9.3",
+    "numeral": "^2.0.6",
+    "request-promise-native": "^1.0.5",
+    "sass-loader": "^7.1.0",
+    "store": "^2.0.12",
+    "v-tooltip": "^2.0.0-rc.33",
+    "vue": "^2.5.17",
+    "vue-chartjs": "^3.4.0",
+    "vue-moment": "^4.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

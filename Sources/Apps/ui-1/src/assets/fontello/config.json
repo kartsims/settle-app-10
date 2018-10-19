@@ -1,0 +1,52 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "fd32deda7b2f5b8cad46d13897c19ae8",
+      "css": "remove",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
+      "uid": "e35de5ea31cd56970498e33efbcb8e36",
+      "css": "external",
+      "code": 61772,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "cda0cdcfd38f5f1d9255e722dad42012",
+      "css": "spinner",
+      "code": 61712,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c76b7947c957c9b78b11741173c8349b",
+      "css": "warning",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1400d5103edd2fa6d2d61688fee79a5a",
+      "css": "check-on",
+      "code": 61770,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "2c2ca8a96b31781c9c8056d05c0a8980",
+      "css": "check-off",
+      "code": 61640,
+      "src": "fontawesome"
+    }
+  ]
+}
