@@ -10,8 +10,6 @@
   - spinner
   - web3 event listener
   - display current block number
-- charts
-  - do not display if no value available
     
 
 mode helper = 225 de large, hauteur dépend de l'écran

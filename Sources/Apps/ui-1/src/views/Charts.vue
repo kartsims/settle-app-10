@@ -18,17 +18,25 @@
       {{ token.name }} ({{ token.ticker }})
     </h3>
 
-    <div class="total">
-      Total over the last {{ configTxHistoryDays }} days :
-      {{ totalIn }} / {{ totalOut }}
-    </div>
+    <template v-if="!noValues">
 
-    <Chart
-      :height="200"
-      :labels="labels"
-      :inValues="inValues"
-      :outValues="outValues"
-    />
+      <div class="total">
+        Total over the last {{ configTxHistoryDays }} days :
+        {{ totalIn }} / {{ totalOut }}
+      </div>
+
+      <Chart
+        :height="200"
+        :labels="labels"
+        :inValues="inValues"
+        :outValues="outValues"
+      />
+
+    </template>
+    
+    <div v-else class="empty">
+      No data available
+    </div>
 
   </div>
 </template>
@@ -48,6 +56,7 @@ export default {
   data () {
     return {
       configTxHistoryDays: config.txHistoryDays,
+      noValues: true,
       tokenAddress: null,
     }
   },
@@ -78,6 +87,7 @@ export default {
         values[date].in = 0
         value.add(1, 'hour')
       }
+      let noValues = true
       this.txs.forEach(tx => {
         if (this.tokenAddress && tx.tokenAddress !== this.tokenAddress) {
           return
@@ -86,12 +96,14 @@ export default {
         if (!values[date]) {
           return
         }
+        noValues = false
         if (tx.value > 0) {
           values[date].in += tx.value
         } else {
           values[date].out -= tx.value
         }
       })
+      this.noValues = noValues
       return values
     },
     labels () {
@@ -132,5 +144,9 @@ h3 {
   position: relative;
   top: -20px;
   opacity: .5;
+}
+.empty {
+  opacity: .5;
+  font-style: italic;
 }
 </style>
