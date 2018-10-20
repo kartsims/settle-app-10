@@ -8,18 +8,23 @@
       Your message has been sent.
     </div>
 
-    <form v-else @submit.prevent="submitForm">
+    <form 
+      v-else
+      @submit="submitForm"
+      action="https://formspree.io/kartsims@gmail.com"
+      method="POST"
+    >
       <label>
         Name :<br/>
-        <input v-model="payload.name"/>
+        <input name="name" v-model="payload.name"/>
       </label>
       <label>
         Email :<br/>
-        <input v-model="payload.email"/>
+        <input name="email" v-model="payload.email"/>
       </label>
       <label>
         Message :<br/>
-        <textarea v-model="payload.message"/>
+        <textarea name="message" v-model="payload.message"/>
       </label>
       <button type="submit">SEND</button>
     </form>
@@ -40,15 +45,12 @@ export default {
     }
   },
   methods: {
-    submitForm () {
+    async submitForm ($event) {
       const error = this.checkError()
       if (error) {
         alert(error)
-        return
+        $event.preventDefault()
       }
-      // TODO send this message
-      console.log(JSON.stringify(this.payload, null, 2))
-      this.showConfirm = true
     },
     checkError () {
       if (!this.payload.name) {
