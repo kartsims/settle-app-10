@@ -194,6 +194,16 @@ table {
       font-family: 'Courier New', Courier, monospace;
       padding-right: 20px;
     }
+    @media (max-width: 640px) {
+      td.name {
+        font-size: 13px;
+        padding-right: 10px;
+      }
+      td.icon {
+        padding-left: 10px;
+        padding-right: 5px;
+      }
+    }
   }
 }
 </style>

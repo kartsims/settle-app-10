@@ -1,7 +1,7 @@
 <template>
   <div :class="'mode-' + $root.mode">
 
-    <TxUpdater/>
+    <TxUpdater v-if="watchList.length > 0"/>
 
     <div v-if="$root.mode === 'work'" class="menu">
 
@@ -25,7 +25,9 @@
 
     </div>
 
-    <div class="content">
+    <GetStarted v-if="getStarted"/>
+
+    <div v-else class="content">
       <router-view/>
     </div>
     
@@ -33,11 +35,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import GetStarted from '@/components/GetStarted.vue'
 import TxUpdater from '@/components/TxUpdater.vue'
 
 export default {
   components: {
+    GetStarted,
     TxUpdater,
+  },
+  computed: {
+    ...mapState(['watchList']),
+    getStarted () {
+      if (this.watchList.length > 0) {
+        return false
+      }
+      if (this.$route.path === '/add' || this.$route.path === '/about') {
+        return false
+      }
+      return true
+    },
   },
 }
 </script>
@@ -92,7 +110,6 @@ h1 {
     color: #2c3e50;
     border-radius: 2px;
     background: #ffffffc7;
-    text-decoration: none;
     &.router-link-exact-active {
       background: #f6a622;
     }
@@ -100,6 +117,10 @@ h1 {
 }
 .content {
   padding: 0 10px 30px;
+  .mode-helper &,
+  .mode-alerts & {
+    padding: 0 0 10px;
+  }
 }
 
 @media (max-width: 640px) {

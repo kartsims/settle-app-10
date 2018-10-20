@@ -1,7 +1,8 @@
 <template>
   <div class="center">
 
-    <h2>Watch a new account</h2>
+    <h2 v-if="token">Add an account</h2>
+    <h2 v-else>Pick an ERC20 token</h2>
 
     <TokenPicker 
       v-if="!token"

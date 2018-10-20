@@ -105,7 +105,7 @@ div.count {
 }
 .filters {
   font-size: 14px;
-  padding: 15px 0;
+  padding: 0 0 15px;
   select {
     margin-right: 10px;
   }

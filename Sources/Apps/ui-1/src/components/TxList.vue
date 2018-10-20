@@ -9,6 +9,13 @@
       cellspacing="0" 
       cellpadding="0"
     >
+      <tr>
+        <th class="date">Date</th>
+        <th class="out"></th>
+        <th class="value">Value</th>
+        <th class="address">Address</th>
+        <th class="other">Sender/Receiver</th>
+      </tr>
       <tr
         v-for="(tx, index) in items" 
         :key="tx.hash"
@@ -32,6 +39,9 @@
         </td>
         <td class="address">
           {{ tx.address }}
+        </td>
+        <td class="other">
+          {{ tx.otherAddress }}
         </td>
       </tr>
     </table>
@@ -63,6 +73,7 @@ export default {
         return {
           date: moment.unix(tx.timestamp).format('YYYY-MM-DD HH:mm:ss'),
           address: this.shortAddress(tx.address),
+          otherAddress: tx.otherAddress,
           hash: tx.hash,
           value,
           valueRound: Math.floor(value),
@@ -100,6 +111,11 @@ table {
       color: #fff;
       cursor: pointer;
     }
+  }
+  th {
+    font-weight: bold;
+    font-size: 10px;
+    padding-bottom: 3px;
   }
   td {
     padding: 2px 4px;
@@ -141,6 +157,7 @@ table {
       }
     }
   }
+  td.other,
   td.address {
     font-family: 'Courier New', Courier, monospace;
     font-size: .8em;
@@ -149,6 +166,7 @@ table {
   .mode-alerts &,
   .mode-helper & {
     width: 100%;
+    th.out,
     td.out {
       display: none;
     }
@@ -177,5 +195,15 @@ table {
   opacity: .5;
   padding: 30px 0;
   font-style: italic;
+}
+
+@media (max-width: 800px) {
+  table {
+    width: 100%;
+  }
+  th.other,
+  td.other {
+    display: none;
+  }
 }
 </style>

@@ -36,6 +36,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import store from 'store'
 import * as async from '@/utils/async'
 
 import TxNotLoaded from '@/components/TxNotLoaded.vue'
@@ -50,7 +51,7 @@ export default {
     return {
       loading: false,
       nbDone: 0,
-      secondsBeforeNext: 0,
+      secondsBeforeNext: store.get('secondsBeforeNext', 0),
     }
   },
   async created () {
@@ -73,6 +74,9 @@ export default {
           this.secondsBeforeNext = UPDATE_FREQUENCY
         } else {
           this.secondsBeforeNext--
+        }
+        if (this.secondsBeforeNext % 10 === 0) {
+          store.set('secondsBeforeNext', this.secondsBeforeNext)
         }
         window.setTimeout(tickTock, 1000)
       }
@@ -122,6 +126,11 @@ export default {
       border-radius: 20px;
       background: rgb(23, 94, 23);
     }
+  }
+
+  .mode-alerts & {
+    padding: 6px;
+    font-size: 10px;
   }
 
   .mode-helper & {

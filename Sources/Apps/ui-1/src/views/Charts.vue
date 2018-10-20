@@ -17,7 +17,6 @@
     <h3 v-if="token">
       {{ token.name }} ({{ token.ticker }})
     </h3>
-
     <template v-show="!noValues">
 
       <div class="total">
