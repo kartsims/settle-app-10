@@ -1,10 +1,23 @@
 <template>
-  <div class="get-started" @click="$router.push('/add')">
+  <div>
 
-    <h2>Welcome to ERC20 Watcher</h2>
+    <div 
+      v-if="$root.mode === 'work'"
+      class="get-started"
+      @click="$router.push('/add')"
+    >
 
-    <p class="plus">click the <span>+</span> button</p>
-    <p>to start watching accounts for ERC20 tokens transactions</p>
+      <h2>Welcome to ERC20 Watcher</h2>
+
+      <p class="plus">click the <span>+</span> button</p>
+      <p>to start watching accounts for ERC20 tokens transactions</p>
+
+    </div>
+    <div v-else class="switch-mode">
+
+      Drag this panel to the central area to get started.
+
+    </div>
 
   </div>
 </template>
@@ -42,6 +55,14 @@ p {
     }
 
   }
+}
+.switch-mode {
+  border: 2px dashed #ffffffc7;
+  border-radius: 6px;
+  margin: 5px;
+  padding: 20px 20px;
+  opacity: .5;
+  text-align: center;
 }
 </style>
 
